@@ -1,0 +1,28 @@
+﻿@model SimpleMvcApp.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<form asp-action="Login" method="post" class="mt-3" style="max-width: 400px;">
+    <!-- Displays model-level validation errors (e.g., Invalid Username or Password) -->
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+    <div class="mb-3">
+        <label asp-for="Username" class="form-label"></label>
+        <input asp-for="Username" class="form-control" required />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" required />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+    <a asp-action="Register" class="btn btn-link">Create an account</a>
+</form>
+

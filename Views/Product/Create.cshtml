@@ -1,0 +1,31 @@
+﻿@model SimpleMvcApp.Models.Product
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<form asp-controller="Product" asp-action="Create" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Price"></label>
+        <input asp-for="Price" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Category"></label>
+        <input asp-for="Category" />
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="IsInStock"></label>
+        <select asp-for="IsInStock">
+            <option value="true">In Stock</option>
+            <option value="false">Out of Stock</option>
+        </select>
+        <span asp-validation-for="IsInStock" class="text-danger"></span>
+    </div>
+    <button type="submit">Create</button>
+</form>

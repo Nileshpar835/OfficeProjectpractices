@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model SimpleMvcApp.Models.Product
+@{
+    ViewData["title"] = "Edit ";
+}
+
+<form asp-controller="Product" asp-action="Edit" method="post">
+    <input asp-for="id" type="hidden" />
+    <div>
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+
+    </div>
+    <div>
+        <label asp-for="Price">Price</label>
+        <input asp-for="Price" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Category">Category</label>
+        <input asp-for="Category" />
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="IsInStock"></label>
+        <select asp-for="IsInStock">
+            <option value="true">Available</option>
+            <option value="false">Out of Stock</option>
+        </select>
+        <span asp-validation-for="IsInStock" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit" value="save" />
+    </div>
+</form>

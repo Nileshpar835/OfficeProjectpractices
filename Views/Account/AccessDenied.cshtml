@@ -1,0 +1,11 @@
+﻿@{
+    var returnUrl = "/Product/Index";
+}
+
+<h2>Access Denied</h2>
+<p>You do not have the required permissions to view this page.</p>
+
+@if (!string.IsNullOrEmpty(returnUrl))
+{
+    <a href="@returnUrl" class="btn btn-secondary">Go Back</a>
+}

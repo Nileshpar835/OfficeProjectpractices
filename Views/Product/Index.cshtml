@@ -1,0 +1,77 @@
+﻿@model IEnumerable<SimpleMvcApp.Models.Product>
+
+@{
+    ViewData["title"] = "Product Catalog";
+
+}
+<h2>Welcome , @ViewBag.Username!</h2>
+
+<form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+    <button type="submit" class="btn btn-link p-0">Logout</button>
+</form>
+
+<h1>Product Catalog</h1>
+<a asp-controller="Product" asp-action="Create">Add New Product</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.id</td>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Category</td>
+                <td>
+                    @if (product.IsInStock)
+                    {
+                        <span class="badge bg-success">In Stock</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Out of Stock</span>
+                    }
+                </td>
+                <td>
+                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.id">Delete</a>
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@product.id">Details</a>
+                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.id">Edit</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav>
+    <ul class="pagination">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li class="page-link">
+                <a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurrentPage -1)">Previous</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i==ViewBag.CurrentPage ? " active " :"")"></li>
+            <a asp-action="Index" class="page-link" asp-route-page="@i">@i</a>
+        }
+
+        @if(ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li>
+                <a asp-action="Index" class="page-link" asp-route-page="@(ViewBag.CurrentPage + 1)" >Next</a>
+            </li>
+
+        }
+
+        </ul>
+    </nav>
